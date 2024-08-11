@@ -1,0 +1,47 @@
+{% extends "home/base.html" %}
+{% block content %}
+<section class="vh-100">
+  <div class="container py-5 h-100">
+
+    <div class="row d-flex justify-content-center align-items-center h-100">
+      <div class="col-md-8 col-lg-6 col-xl-4">
+
+        <h3 class="mb-4 pb-2 fw-normal">Check the weather forecast</h3>
+
+        <form method="GET" class="input-group rounded mb-3">
+          <input type="search" class="form-control rounded" placeholder="City" aria-label="Search"
+            aria-describedby="search-addon" name="city" required/>
+          <button class="mx-2 btn" type="submit">
+              Check!
+            </span>
+          </button>
+        </form>
+
+        {% if error %}
+          <div class="alert alert-danger" role="alert">
+            {{ error }}
+          </div>
+        {% else %}
+          <div class="card shadow-0 border">
+            <div class="card-body p-4">
+
+              <h4 class="mb-1 sfw-normal">{{ data.city }}, {{ data.country }}</h4>
+              <p class="mb-2">Current temperature: <strong>{{ data.temp }}°C</strong></p>
+              <p>Feels like: <strong>{{ data.feels_like }}°C</strong></p>
+              <p>Max: <strong>{{ data.temp_max }}°C</strong>, Min: <strong>{{ data.temp_min }}°C</strong></p>
+
+              <div class="d-flex flex-row align-items-center">
+                <p class="mb-0 me-4">Scattered Clouds</p>
+                <img src="http://openweathermap.org/img/wn/{{ data.icon }}.png" alt="Weather Icon" class="weather-icon">
+              </div>
+
+            </div>
+          </div>
+        {% endif %}
+
+      </div>
+    </div>
+
+  </div>
+</section>
+{% endblock %}
